@@ -45,8 +45,31 @@ def count(arr, m, n):
     return count(arr, m, n-arr[m-1]) + count(arr, m-1, n)
 
 
+
+def countWithDP(coins, n):
+    """
+    Dynamic approach to solve this problem
+    :param coins:
+    :param n:
+    :return:
+    """
+    dp_size = n+1
+    dp = [0]*dp_size
+    dp[0]=1
+
+    for c in range(len(coins)):
+        for i in range(len(dp)):
+            if coins[c] <= i:
+                dp[i] = dp[i - coins[c]] + dp[i]
+
+    return dp[-1]
+
+
 if __name__ == '__main__':
 
     arr = [1, 2, 3]
+    key = 15
     m = len(arr)
-    print(count(arr, m, 4))
+    print(count(arr, m, key))
+    r = countWithDP(arr,key)
+    print("DP: {}".format(r))
