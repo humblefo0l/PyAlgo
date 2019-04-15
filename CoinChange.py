@@ -23,6 +23,7 @@ implementation simply follows the recursive structure mentioned above.
 """
 
 
+dp = [[-1 for i in range(150)] for j in range(150)]
 
 def count(arr, m, n):
     """
@@ -45,10 +46,40 @@ def count(arr, m, n):
     return count(arr, m, n-arr[m-1]) + count(arr, m-1, n)
 
 
-
-def countWithDP(coins, n):
+def countWithDP(coins, m, N):
     """
-    Dynamic approach to solve this problem
+    Dynamic way of solving this problem in similar way as done in previous problem
+    :param coins:
+    :param m:
+    :param N:
+    :return:
+    """
+
+    if m <= 0:
+        return 0
+
+    if N == 0:
+        return 1
+
+    if N < 0:
+        return 0
+
+    if N==0 and m>0:
+        return 1
+
+    if dp[m][N] != -1:
+        return dp[m][N]
+
+    dp[m][N] = countWithDP(coins, m-1, N) + \
+               countWithDP(coins, m, N-coins[m-1])
+
+    return dp[m][N]
+
+
+
+def countWithDPAnotherApproch(coins, n):
+    """
+    Dynamic approach to solve this problem in different way
     :param coins:
     :param n:
     :return:
@@ -66,10 +97,12 @@ def countWithDP(coins, n):
 
 
 if __name__ == '__main__':
-
-    arr = [1, 2, 3]
-    key = 15
+    arr = [1, 2, 3,7,9,10]
+    key = 50
     m = len(arr)
-    print(count(arr, m, key))
-    r = countWithDP(arr,key)
-    print("DP: {}".format(r))
+
+    print("Recursive approach: %s"%count(arr, m, key))
+    r = countWithDP(arr, m, key)
+    print("DP with similar approach: {}".format(r))
+    r = countWithDPAnotherApproch(arr, key)
+    print("DP with different approach: {}".format(r))
