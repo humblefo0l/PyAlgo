@@ -23,7 +23,6 @@ implementation simply follows the recursive structure mentioned above.
 """
 
 
-dp = [[-1 for i in range(150)] for j in range(150)]
 
 def count(arr, m, n):
     """
@@ -46,6 +45,7 @@ def count(arr, m, n):
     return count(arr, m, n-arr[m-1]) + count(arr, m-1, n)
 
 
+dp = [[-1 for i in range(150)] for j in range(150)]
 def countWithDP(coins, m, N):
     """
     Dynamic way of solving this problem in similar way as done in previous problem
@@ -80,8 +80,8 @@ def countWithDP(coins, m, N):
 def countWithDPAnotherApproch(coins, n):
     """
     Dynamic approach to solve this problem in different way
-    :param coins:
-    :param n:
+    :param coins: list of coins
+    :param n: key for which combination needs to be calculated
     :return:
     """
     dp_size = n+1
