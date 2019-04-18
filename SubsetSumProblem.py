@@ -49,12 +49,51 @@ def subsetSum(arr, size, weight):
     return subsetSum(arr, size-1, weight) or subsetSum(arr, size-1, weight-arr[size-1])
 
 
+def isSubsetSum(array, size, weight):
+    # The value of sub_array[i][jj] will be
+    # true if there is a
+    # sub_array of array[0..jj-1] with weight equal to i
+    sub_array = ([[False for i in range(weight + 1)]
+               for i in range(size + 1)])
+
+    # If weight is 0, then answer is true
+    for i in range(size + 1):
+        sub_array[i][0] = True
+
+
+        # If weight is not 0 and array is empty,
+        # then answer is false
+        for i in range(1, weight + 1):
+            sub_array[0][i] = False
+
+        # Fill the sub_array table in botton up manner
+
+        for i in range(1, size + 1):
+            for jj in range(1, weight + 1):
+
+                if jj < array[i - 1]:
+                    sub_array[i][jj] = sub_array[i - 1][jj]
+                if jj >= array[i - 1]:
+                    sub_array[i][jj] = (sub_array[i - 1][jj] or
+                                    sub_array[i - 1][jj - array[i - 1]])
+
+                    # uncomment this code to print table
+        # for i in range(size+1):
+        #     for jj in range(weight+1):
+        #         print(sub_array[i][jj], end=" ")
+        #     print()
+    return sub_array[size][weight]
+
 
 if __name__ == '__main__':
 
-    arr = [1,2,3,4,5]
+    arr = [1,2,3]
     size = len(arr)
-    weight = 10
+    weight = 4
 
     print(subsetSum(arr, size, weight))
+    if (isSubsetSum(arr, size, weight) == True):
+        print("Found a subset with given sum")
+    else:
+        print("No subset with given sum")
 
