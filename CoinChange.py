@@ -24,57 +24,48 @@ implementation simply follows the recursive structure mentioned above.
 
 
 
-def count(arr, m, n):
+def coinChange(coin, index, value):
     """
     Recursive approch to solve this problem
-    :param arr:
-    :param m:
-    :param n:
+
+    :param coin:
+    :param index:
+    :param value:
     :return:
     """
-
-    if m <= 0:
-        return 0
-
-    if n == 0:
+    if value == 0 :
         return 1
-
-    if n<0:
+    elif value >0 and index>=0 and index < len(coin):
+        a = coinChange(coin, index, value - coin[index])
+        b = coinChange(coin, index + 1, value)
+        v = (a + b)
+        return v
+    else:
         return 0
 
-    return count(arr, m, n-arr[m-1]) + count(arr, m-1, n)
 
-
-dp = [[-1 for i in range(150)] for j in range(150)]
-def countWithDP(coins, m, N):
+def coinChangeDP(coin, index, value, memo):
     """
     Dynamic way of solving this problem in similar way as done in previous problem
-    :param coins:
-    :param m:
-    :param N:
+    :param coin:
+    :param index:
+    :param value:
+    :param memo:
     :return:
     """
 
-    if m <= 0:
-        return 0
+    if (index, value) in memo:
+        return memo[(index, value)]
 
-    if N == 0:
+    if value == 0:
         return 1
 
-    if N < 0:
+    elif value > 0 and index >= 0 and index < len(coin):
+        memo[(index, value)] =  coinChangeDP(coin, index, value - coin[index], memo) + coinChangeDP(coin, index + 1, value, memo)
+
+        return memo[(index, value)]
+    else:
         return 0
-
-    if N==0 and m>0:
-        return 1
-
-    if dp[m][N] != -1:
-        return dp[m][N]
-
-    dp[m][N] = countWithDP(coins, m-1, N) + \
-               countWithDP(coins, m, N-coins[m-1])
-
-    return dp[m][N]
-
 
 
 def countWithDPAnotherApproch(coins, n):
@@ -101,8 +92,8 @@ if __name__ == '__main__':
     key = 50
     m = len(arr)
 
-    print("Recursive approach: %s"%count(arr, m, key))
-    r = countWithDP(arr, m, key)
+    print("Recursive approach: %s"%coinChange(arr, m, key))
+    r = coinChangeDP(arr, m, key)
     print("DP with similar approach: {}".format(r))
     r = countWithDPAnotherApproch(arr, key)
     print("DP with different approach: {}".format(r))
