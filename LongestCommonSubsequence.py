@@ -17,6 +17,13 @@ LCS for input Sequences “AGGTAB” and “GXTXAYB” is “GTAB” of length 4
 
 
 def longestCommonSubSeq(string1, string2):
+    """
+    Deatil Soruce: https://www.youtube.com/watch?v=NnD96abizww
+
+    :param string1:
+    :param string2:
+    :return:
+    """
 
     string1 = [i for i in string1]
     string2 = [i for i in string2]
