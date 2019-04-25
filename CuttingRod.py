@@ -50,10 +50,37 @@ def cutRodDP(array, size):
 
     return dp[size]
 
+
+# def cutRodS(arr, start, end):
+#     if start == end:
+#         return 1
+#
+#     if end < 0 and start >= len(arr):
+#         return 0
+#
+#     return max(cutRodS(arr, start, end-1) + arr[end], cutRodS(arr, start, end-1))
+
+def cr(a, s):
+    if s <= 0:
+        return 0
+
+    m = -1
+
+    for i in range(s):
+        m = max(m, a[i] + cr(a, s - i - 1))
+
+    return m
+
+
+
+print(cr([1, 2, 3, 1], 4))
+
 if __name__ == '__main__':
 
-    arr = [1, 5, 8, 9, 10, 17, 11, 20]
+    arr = [1, 3,1, 4, 8,2, 5,7]
     size = len(arr)
-
+    start = 0
     print("Maximum Obtainable Value is", cutRod(arr, size))
     print("Maximum Obtainable Value via DP is", cutRodDP(arr, size))
+    # print("Maximum Obtainable Value via DP_S is", cutRodS(arr, start, size-1))
+    print("Maximum Obtainable Value via DP_S is", cutRodS(arr, start))
