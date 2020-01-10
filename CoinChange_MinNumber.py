@@ -26,10 +26,10 @@ If V > 0
 """
 
 
-def count(coins,  m, key):
+def count(values, index, key):
     """
     Dynamic approach to solve this problem in different way
-    :param coins:
+    :param values:
     :param n:
     :return:
     """
@@ -40,9 +40,9 @@ def count(coins,  m, key):
 
     res = sys.maxsize
 
-    for i in range(m):
-        if coins[i] <= key:
-            sub_res = count(coins, m, key-coins[i])
+    for i in range(index):
+        if values[i] <= key:
+            sub_res = count(values, index, key - values[i])
 
             if sub_res != sys.maxsize and sub_res+1 < res:
                 res = sub_res+1
@@ -50,12 +50,11 @@ def count(coins,  m, key):
     return res
 
 
-
-
-
 if __name__ == '__main__':
-    arr = [1, 2, 3,7,9,10]
-    key = 10
-    m = len(arr)
+    values = [1, 2, 3,7,9,10]
+    key = 15
+    index = len(values)
 
-    print("Min number is %s"%count(arr, m, key))
+    print("Min number is %s"%count(values, index, key))
+    dp={}
+    print("Min number is %s"%countdp(values ,index, key, dp))

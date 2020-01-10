@@ -54,7 +54,6 @@ def longestIncSeqDP(array, size):
     """
     dp = [1 for i in range(size)]
 
-
     for i in range(1, size):
         for j in range(i):
             if array[j] < array[i]:
@@ -70,31 +69,32 @@ if __name__ == '__main__':
     print(longestIncSeq(array, size))
     print(longestIncSeqDP(array, size))
     print()
-    array = [50, 3, 10, 7, 40, 80]
-    size = len(array)
-    print(longestIncSeq(array, size))
-    print(longestIncSeqDP(array, size))
-    print()
 
-
-    array = [10, 22, 9, 33, 21, 50, 41, 60]
-    size = len(array)
-    print(longestIncSeq(array, size))
-    print(longestIncSeqDP(array, size))
-    print()
-
-
-    array = [3, 2]
-    size = len(array)
-    print(longestIncSeq(array, size))
-    print(longestIncSeqDP(array, size))
-    print()
-
-
-    array = [10,9,2,5,3,7,101,18]
-    size = len(array)
-    print(longestIncSeq(array, size))
-    print(longestIncSeqDP(array, size))
-    print()
-
-
+    # array = [50, 3, 10, 7, 40, 80]
+    # size = len(array)
+    # print(longestIncSeq(array, size))
+    # print(longestIncSeqDP(array, size))
+    # print()
+    #
+    #
+    # array = [10, 22, 9, 33, 21, 50, 41, 60]
+    # size = len(array)
+    # print(longestIncSeq(array, size))
+    # print(longestIncSeqDP(array, size))
+    # print()
+    #
+    #
+    # array = [3, 2]
+    # size = len(array)
+    # print(longestIncSeq(array, size))
+    # print(longestIncSeqDP(array, size))
+    # print()
+    #
+    #
+    # array = [10,9,2,5,3,7,101,18]
+    # size = len(array)
+    # print(longestIncSeq(array, size))
+    # print(longestIncSeqDP(array, size))
+    # print()
+    #
+    #

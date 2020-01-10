@@ -47,18 +47,50 @@ def longestCommonSubSeq(string1, string2):
             # print()
 
     # print(dp)
-    print(set(ms))
+    # print(set(ms))
     return dp[string1_length-1][string2_length-1]
+
+
+def longestCommonSubSeqDP(string1, string2, m, n):
+    if m == 0 or n == 0:
+        return 0
+
+    if string1[m-1] == string2[n-1]:
+        return 1 + longestCommonSubSeqDP(string1, string2, m-1, n-1)
+
+    return max(longestCommonSubSeqDP(string1, string2, m-1, n),
+               longestCommonSubSeqDP(string1, string2, m, n-1))
+
 
 if __name__ == '__main__':
 
     string1 = "ABCDGH"
     string2 = "AEDFHR"
     print(longestCommonSubSeq(string1, string2))
-    print(longestCommonSubSeq(string1, string2))
 
+    s1 = [ x for x in string1]
+    s2 = [ x for x in string2]
+    m = len(s1)
+    n = len(s2)
+    print(longestCommonSubSeqDP(s1, s2, m, n))
+
+    print('============')
     string1 = "AGGTAB"
     string2 = "GXTXAYB"
     print(longestCommonSubSeq(string1, string2))
+    s1 = [x for x in string1]
+    s2 = [x for x in string2]
+    m = len(s1)
+    n = len(s2)
+    print(longestCommonSubSeqDP(s1, s2, m, n))
+
+    print('============')
+    string1 = "sdjnksjdnvsdkjnv"
+    string2 = "ksdjbvksldbvklsf"
     print(longestCommonSubSeq(string1, string2))
+    s1 = [x for x in string1]
+    s2 = [x for x in string2]
+    m = len(s1)
+    n = len(s2)
+    print(longestCommonSubSeqDP(s1, s2, m, n))
 
