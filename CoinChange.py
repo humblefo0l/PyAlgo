@@ -37,7 +37,7 @@ def coinChange(coin, index, value):
         return 1
     elif value >0 and index>=0 and index < len(coin):
         a = coinChange(coin, index, value - coin[index])
-        b = coinChange(coin, index + 1, value)
+        b = coinChange(coin, index - 1, value)
         v = (a + b)
         return v
     else:
@@ -61,7 +61,7 @@ def coinChangeDP(coin, index, value, memo):
         return 1
 
     elif value > 0 and index >= 0 and index < len(coin):
-        memo[(index, value)] =  coinChangeDP(coin, index, value - coin[index], memo) + coinChangeDP(coin, index + 1, value, memo)
+        memo[(index, value)] =  coinChangeDP(coin, index, value - coin[index], memo) + coinChangeDP(coin, index - 1, value, memo)
 
         return memo[(index, value)]
     else:
@@ -88,12 +88,12 @@ def countWithDPAnotherApproch(coins, n):
 
 
 if __name__ == '__main__':
-    arr = [1, 2, 3,7,9,10]
-    key = 50
-    m = len(arr)
+    arr = [1, 2, 3,]
+    key = 4
+    m = len(arr) -1
 
     print("Recursive approach: %s"%coinChange(arr, m, key))
-    r = coinChangeDP(arr, m, key)
+    r = coinChangeDP(arr, m, key, {})
     print("DP with similar approach: {}".format(r))
     r = countWithDPAnotherApproch(arr, key)
     print("DP with different approach: {}".format(r))
