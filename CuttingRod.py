@@ -71,10 +71,6 @@ def cr(a, s):
 
     return m
 
-
-
-print(cr([1, 2, 3, 1], 4))
-
 if __name__ == '__main__':
 
     arr = [1, 3,1, 4, 8,2, 5,7, 12, 44]

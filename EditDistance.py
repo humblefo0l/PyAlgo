@@ -63,6 +63,22 @@ def editDistance(string1, string2):
     # print(dp)
     return dp[len(string2)][len(string1)]
 
+
+def editDistanceRecur(str1, str2, index):
+    if index == 0:
+        return 1
+
+    if index < 0:
+        return 0
+
+    if str1[index] == str2[index]:
+        return  editDistance( str1, str2, index-1)
+
+    return min(
+        editDistance(str1, str2, index)
+    )
+
+
 if __name__ == '__main__':
 
     string1 = "cat"

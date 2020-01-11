@@ -42,7 +42,15 @@ def countFriendsPairings(n):
         else:
             dp[i] = dp[i-1] + (i-1)*dp[i-2]
 
+    print(dp)
     return dp[-1]
+
+def countFriendsPairingsRecur(n):
+    pass
+
+
+
+
 
 
 n=4
