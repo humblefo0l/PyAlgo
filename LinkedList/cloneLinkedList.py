@@ -25,7 +25,11 @@ class Node:
 
 def pList(c):
     while c:
-        print(c.key, end=" ")
+        print(c.key,'-->' ,end=" ")
+        if c.random:
+            print(c.random.key)
+        else:
+            print(None)
         c = c.next
 
 def clone(head):
