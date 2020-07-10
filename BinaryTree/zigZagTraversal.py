@@ -10,7 +10,7 @@ Write a function to print ZigZag order traversal of a binary tree. For the below
 zigzag order traversal will be 1 3 2 7 6 5 4
 
 """
-
+ 
 
 class Node:
     def __init__(self, data):
