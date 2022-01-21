@@ -1,65 +1,48 @@
-# def deco(fun):
-#     c = 0
-#     def wrap(*args, **kwargs):
-#         nonlocal c
-#         f = fun(*args, **kwargs)
-#         c += 1
-#         print('c called  {} time'.format(c))
-#
-#     return wrap
+# #2 folder have same no. files
+# a = 10
+# b = 10
 #
 #
+# a = [1,2,3,4,5]
+# b = [3,2,1,6,7]
 #
+# a = {i:i for i in a }
+# b = {i:i for i in b }
 #
-# def coinChange(coin, index, value):
-#     """
-#     Recursive approch to solve this problem
+# def get_hash(obj):
+#     return obj
 #
-#     :param coin:
-#     :param index:
-#     :param value:
-#     :return:
-#     """
-#     if value == 0 :
-#         return 1
-#     elif value >0 and index>=0 and index < len(coin):
-#         a = coinChange(coin, index, value - coin[index])
-#         b = coinChange(coin, index + 1, value)
-#         v = (a + b)
-#         return v
-#     else:
-#         return 0
+# r = [x for i in a if get_hash(a[i]) != get_hash(b[i]) ]
 #
-#
-# def coinChangeDP(coin, index, value, memo):
-#     """
-#     Dynamic way of solving this problem in similar way as done in previous problem
-#     :param coin:
-#     :param index:
-#     :param value:
-#     :param memo:
-#     :return:
-#     """
-#
-#     if (index, value) in memo:
-#         return memo[(index, value)]
-#
-#     if value == 0:
-#         return 1
-#
-#     elif value > 0 and index >= 0 and index < len(coin):
-#         memo[(index, value)] =  coinChangeDP(coin, index, value - coin[index], memo) + coinChangeDP(coin, index + 1, value, memo)
-#
-#         return memo[(index, value)]
-#     else:
-#         return 0
-#
-# coin = [1, 2, 3]
-# index = 0
-# value = 4
-# memo = {}
-#
-# print(coinChange(coin, index, value))
-# print(coinChangeDP(coin, index, value, memo))
-# # print(coinChangeDP2(coin, len(coin), value))
+# print(r)
 
+
+def get_encoded_value(data, v):
+    import random
+    return data + v[random.randint(0,4)]
+
+def get_result(data):
+
+
+    a = 1
+    b = 2
+
+    v = ['a', 'e', 'i', 'o', 'u']
+
+    fib = [a]
+
+    for i in range(len(data)):
+
+        if i == 0:
+            print(data[i])
+            continue
+
+        if i in fib and data[i] not in v:
+            print(get_encoded_value(data[i], v))
+
+        fib.append(b)
+        r = a + b
+        a = b
+        b = r
+
+print(get_result('this is the simple text'))
