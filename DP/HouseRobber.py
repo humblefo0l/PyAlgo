@@ -32,29 +32,38 @@ from typing import List
 
 class Solution:
     def rob(self, nums: List[int]) -> int:
-        index = len(nums) - 1
-        memo = {}
-        return self._rob(nums, index, memo)
+        rob1= rob2 = 0
 
-    def _rob(self, nums, index, memo) -> int:
-        # print(f"index: {index}, memo: {memo}")
+        for i in nums:
+            temp = max(i+rob1, rob2)
+            rob1= rob2
+            rob2= temp
 
-        if index in memo:
-            return memo[index]
+        return rob2
 
-        if index < 0:
-            return 0
-
-        if index ==0:
-            return nums[index]
-
-        memo[index]  = max(
-            nums[index] + self._rob(nums, index-2, memo),
-            self._rob(nums, index-1, memo),
-            )
-
-        return memo[index]
-
+#         index = len(nums) - 1
+#         memo = {}
+#         return self._rob(nums, index, memo)
+#
+#     def _rob(self, nums, index, memo) -> int:
+#         # print(f"index: {index}, memo: {memo}")
+#
+#         if index in memo:
+#             return memo[index]
+#
+#         if index < 0:
+#             return 0
+#
+#         if index ==0:
+#             return nums[index]
+#
+#         memo[index]  = max(
+#             nums[index] + self._rob(nums, index-2, memo),
+#             self._rob(nums, index-1, memo),
+#             )
+#
+#         return memo[index]
+# #
 
 s = Solution()
 nums = [1,2,3,1]
